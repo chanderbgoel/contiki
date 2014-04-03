@@ -159,6 +159,15 @@ endif # IAR
 
 CFLAGS  += $(CFLAGSNO)
 
+################################################
+#Added by Chander Goel##########################
+TARGET_MEMORY_MODEL ?= medium
+CFLAGS += -mmemory-model=$(TARGET_MEMORY_MODEL)
+CFLAGS += -ffunction-sections -fdata-sections -mcode-region=far -mdata-region=far
+LDFLAGS += -mmemory-model=$(TARGET_MEMORY_MODEL) -Wl,-gc-sections
+#####################################################
+
+
 PROJECT_OBJECTFILES += ${addprefix $(OBJECTDIR)/,$(CONTIKI_TARGET_MAIN:.c=.o)}
 
 ### Compilation rules
